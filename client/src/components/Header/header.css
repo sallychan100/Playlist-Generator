@@ -1,0 +1,21 @@
+header{
+    margin: 0 10px;
+}
+
+.logo{
+    min-width: auto;
+    min-height: auto;
+    height:40%;
+    width: 60%;
+}
+.flex-row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.top-btn{
+    font-size: 30px;
+    color: white;
+    margin: 20px 100px;
+    padding: 50px;
+}

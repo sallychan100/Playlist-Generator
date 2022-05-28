@@ -1,0 +1,9 @@
+html,
+body {
+  min-height: 100%;
+  margin: 0 20px;
+  background: #35007a;
+  color: white;
+  font-family: Century Gothic, Georgia;
+  font-size: 30px;
+}

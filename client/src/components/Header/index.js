@@ -1,6 +1,9 @@
 import React from 'react';
 // import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
+import './header.css';
+
+const logo = require('./logo_white.png');
 
 function Header() {
   // function showBtn() {
@@ -33,18 +36,14 @@ function Header() {
   // }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="logo">
-            Logo
-          </span>
-          PlaylistAnt
-        </Link>
-      </h1>
+    <header classname="flex">
+      <Link className="top-btn" to='/signup'> Sign up / Sign In </Link>
+      
+      <Link to="/">
+      <img src={logo} alt="Logo" className='logo'/>
+      </Link>
+      
 
-      <Link className="signup" to='/signup'> Sign up</Link>
-      <Link to='/signin'> Sign in</Link>
       {/* <nav>{showBtn()}</nav> */}
     </header>
   );
