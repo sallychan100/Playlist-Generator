@@ -8,10 +8,10 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import { Provider } from 'react-redux';
-import store from './utils/store';
+// import { Provider } from 'react-redux';
 
 import Landing from './pages/Landing';
+import Header from './components/Header'
 import DisplayResult from './pages/DisplayResult';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -41,8 +41,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <Provider store={store}>
-            <Nav />
+            <Header />
             <Routes>
               <Route 
                 path="/" 
@@ -65,7 +64,6 @@ function App() {
                 element={<SavedPlaylists />} 
               />
             </Routes>
-          </Provider>
         </div>
       </Router>
     </ApolloProvider>

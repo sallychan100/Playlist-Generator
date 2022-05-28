@@ -5,8 +5,8 @@ import SearchBar from "../components/SearchBar";
 const Landing = () => {
     return (
         <div className="container">
-            <Header />
-            <SearchBar />
+        
+        <SearchBar />
         </div>
     )
 }
