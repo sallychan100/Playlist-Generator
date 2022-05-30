@@ -23,10 +23,10 @@ const userSchema = new Schema(
     playlists: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Playlists",
+        ref: "Playlist",
       },
     ],
-    friends: [
+    songs: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
@@ -55,9 +55,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual("friendCount").get(function () {
-  return this.friends.length;
-});
+// userSchema.virtual("songCount").get(function () {
+//   return this.songs.length;
+// });
 
 const User = model("User", userSchema);
 

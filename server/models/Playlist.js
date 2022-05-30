@@ -2,9 +2,9 @@ const { Schema, model } = require("mongoose");
 const reactionSchema = require("./Reaction");
 const dateFormat = require("../utils/dateFormat");
 
-const playlistsSchema = new Schema(
+const playlistSchema = new Schema(
   {
-    playlistsName: {
+    playlistName: {
       type: String,
       required: "You need to leave a playlist!",
       minlength: 1,
@@ -28,10 +28,10 @@ const playlistsSchema = new Schema(
   }
 );
 
-playlistsSchema.virtual("reactionCount").get(function () {
+playlistSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-const Playlists = model("Playlists", playlistsSchema);
+const Playlist = model("Playlist", playlistSchema);
 
-module.exports = Playlists;
+module.exports = Playlist;

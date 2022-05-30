@@ -20,22 +20,22 @@ db.once("open", async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
 
-  // create friends
+  // create songs
   for (let i = 0; i < 100; i += 1) {
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { _id: userId } = createdUsers.ops[randomUserIndex];
 
-    let friendId = userId;
+    let songId = userId;
 
-    while (friendId === userId) {
+    while (songId === userId) {
       const randomUserIndex = Math.floor(
         Math.random() * createdUsers.ops.length
       );
-      friendId = createdUsers.ops[randomUserIndex];
+      songId = createdUsers.ops[randomUserIndex];
     }
 
     // update1: check to see if code breaks after deletion
-    await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
+    await User.updateOne({ _id: userId }, { $addToSet: { songs: songId } });
   }
 
   // create playlists

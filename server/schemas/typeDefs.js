@@ -1,19 +1,71 @@
-// import the gql tagged template function
 const { gql } = require("apollo-server-express");
 
-// create our typeDefs
-
 const typeDefs = gql`
-  type Playlists {
+  type User {
     _id: ID
-    playlistsName: String
+    username: String
+    email: String
+    songCount: Int
+    playlists: [Playlist]
+    songs: [User]
+  }
+
+  type Playlist {
+    _id: ID
+    playlistName: String
+    createdAt: String
+    username: String
+    reactionCount: Int
+    reactions: [Reaction]
+  }
+
+  type Reaction {
+    _id: ID
+    reactionBody: String
     createdAt: String
     username: String
   }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
-    playlists(username: String): [Playlists]
+    me: User
+    users: [User]
+    user(username: String!): User
+    playlists(username: String): [Playlist]
+    playlist(_id: ID!): Playlist
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    addPlaylist(playlistName: String!): Playlist
+    addReaction(playlistId: ID!, reactionBody: String!): Playlist
+    addSong(songId: ID!): User
   }
 `;
 
-// export the typeDefs
 module.exports = typeDefs;
+
+// // import the gql tagged template function
+// const { gql } = require("apollo-server-express");
+
+// // create our typeDefs
+
+// const typeDefs = gql`
+//   type Playlists {
+//     _id: ID
+//     playlistsName: String
+//     createdAt: String
+//     username: String
+//   }
+//   type Query {
+//     playlists(username: String): [Playlists]
+//   }
+// `;
+
+// // export the typeDefs
+// module.exports = typeDefs;

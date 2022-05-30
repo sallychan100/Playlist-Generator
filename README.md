@@ -8,4 +8,4 @@ A user can search and save playlists (thoughts)
 
 A user can react, or reply, to a thought.
 
-A user can befriend other users. -->
+A user can besong other users. -->
