@@ -1,81 +1,30 @@
-const faker = require("faker");
-
+// const faker = require('faker');
+const userSeeds = require("./userSeed.json");
+const playlistSeeds = require("./playlistSeed.json");
 const db = require("../config/connection");
-const { Playlists, User } = require("../models");
+const { Playlist, User } = require("../models");
 
 db.once("open", async () => {
-  await Playlists.deleteMany({});
-  await User.deleteMany({});
+  try {
+    await Playlist.deleteMany({});
+    await User.deleteMany({});
 
-  // create user data
-  const userData = [];
+    await User.create(userSeeds);
 
-  for (let i = 0; i < 50; i += 1) {
-    const username = faker.internet.userName();
-    const email = faker.internet.email(username);
-    const password = faker.internet.password();
-
-    userData.push({ username, email, password });
-  }
-
-  const createdUsers = await User.collection.insertMany(userData);
-
-  // create songs
-  for (let i = 0; i < 100; i += 1) {
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { _id: userId } = createdUsers.ops[randomUserIndex];
-
-    let songId = userId;
-
-    while (songId === userId) {
-      const randomUserIndex = Math.floor(
-        Math.random() * createdUsers.ops.length
+    for (let i = 0; i < playlistSeeds.length; i++) {
+      const { _id, playlistAuthor } = await Playlist.create(playlistSeeds[i]);
+      const user = await User.findOneAndUpdate(
+        { username: playlistAuthor },
+        {
+          $addToSet: {
+            playlists: _id,
+          },
+        }
       );
-      songId = createdUsers.ops[randomUserIndex];
     }
-
-    // update1: check to see if code breaks after deletion
-    await User.updateOne({ _id: userId }, { $addToSet: { songs: songId } });
-  }
-
-  // create playlists
-  let createdPlaylists = [];
-  for (let i = 0; i < 100; i += 1) {
-    const playlistsName = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
-
-    const createdPlaylists = await Playlists.create({
-      playlistsName,
-      username,
-    });
-
-    const updatedUser = await User.updateOne(
-      { _id: userId },
-      { $push: { playlists: createdPlaylists._id } }
-    );
-
-    createdPlaylists.push(createdPlaylists);
-  }
-
-  // create reactions
-  for (let i = 0; i < 100; i += 1) {
-    const reactionBody = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username } = createdUsers.ops[randomUserIndex];
-
-    const randomPlaylistsIndex = Math.floor(
-      Math.random() * createdPlaylists.length
-    );
-    const { _id: playlistsId } = createdPlaylists[randomPlaylistsIndex];
-
-    await Playlists.updateOne(
-      { _id: playlistsId },
-      { $push: { reactions: { reactionBody, username } } },
-      { runValidators: true }
-    );
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
   }
 
   console.log("all done!");
