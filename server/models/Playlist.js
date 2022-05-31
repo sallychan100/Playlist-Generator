@@ -6,20 +6,15 @@ const playlistSchema = new Schema(
   {
     playlistName: {
       type: String,
-      required: "You need to leave a playlist!",
-      minlength: 1,
-      maxlength: 280,
+    },
+    tracks: {
+      type: Array,
     },
     createdAt: {
       type: Date,
       default: Date.now,
       get: (timestamp) => dateFormat(timestamp),
     },
-    username: {
-      type: String,
-      required: true,
-    },
-    reactions: [reactionSchema],
   },
   {
     toJSON: {
