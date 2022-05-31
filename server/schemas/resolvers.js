@@ -1,6 +1,11 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Playlist } = require("../models");
 const { signToken } = require("../utils/auth");
+const clientId = "d832a28cf8dc48a39964ead771a95c73";
+require("dotenv").config();
+
+const clientSecret = process.env.CLIENT_SECRET;
+const SpotifyWebApi = require("spotify-web-api-node");
 
 const resolvers = {
   Query: {
@@ -34,6 +39,31 @@ const resolvers = {
     },
     playlist: async (parent, { _id }) => {
       return Playlist.findOne({ _id });
+    },
+
+    search: async (parent, { searchTerm }) => {
+      const spotifyApi = new SpotifyWebApi({
+        clientId: clientId,
+        clientSecret: clientSecret,
+      });
+
+      const data = await spotifyApi.clientCredentialsGrant();
+      spotifyApi.setAccessToken(data.body["access_token"]);
+
+      const results = await spotifyApi.searchPlaylists(searchTerm, {
+        limit: 2,
+      });
+
+      const playlist = await spotifyApi.getPlaylist(
+        results.body.playlists.items[0].id
+      );
+
+      const tracks = playlist.body.tracks.items.map((el) => {
+        return { ...el.track, image: el.track.album.images[0].url };
+      });
+
+      console.log(tracks);
+      return tracks;
     },
   },
 

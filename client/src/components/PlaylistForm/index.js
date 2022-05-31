@@ -58,24 +58,24 @@ const PlaylistForm = () => {
 
   return (
     <div>
-      <p
+      {/* <p
         className={`m-0 ${characterCount === 280 || error ? "text-error" : ""}`}
       >
         Character Count: {characterCount}/280
         {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
+      </p> */}
       <form
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Here's a new playlist..."
+          placeholder="Search for Music"
           value={playlistName}
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
         <button className="btn col-12 col-md-3" type="submit">
-          Submit
+          Search
         </button>
       </form>
     </div>
