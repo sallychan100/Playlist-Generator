@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 
-const logo = require('./logo_white.png');
-
 function Header() {
   // function showBtn() {
   //   if (Auth.loggedIn()) {
@@ -38,9 +36,10 @@ function Header() {
   return (
     <header>
       <div className='flex'>
-      <img src={logo} alt="Logo" className='logo'/>
+      <img src={'/images/logo.png'} alt="Logo" className='logo'/>
       <h2> Your Personal Playlist Assistant</h2>
-      <Link className="top-btn" to='/signup'> Sign up / Sign In </Link>
+      <Link className="top-btn" to='/login'> Login</Link>
+      <Link className="top-btn" to='/signup'> Sign up</Link>
       
       </div>
 

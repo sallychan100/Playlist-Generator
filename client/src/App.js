@@ -14,8 +14,8 @@ import { setContext } from '@apollo/client/link/context';
 import Landing from './pages/Landing';
 import Header from './components/Header'
 import DisplayResult from './pages/DisplayResult';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import SavedPlaylists from './pages/SavedPlaylists'
 
 const httpLink = createHttpLink({
@@ -49,12 +49,12 @@ function App() {
                 element={<Landing />} 
               />
               <Route 
-                path="/signin" 
-                element={<SignIn />} 
+                path="/login" 
+                element={<Login />} 
               />
               <Route 
                 path="/signup" 
-                element={<SignUp />} 
+                element={<Signup />} 
               />
                 <Route 
                   path="/results" 
