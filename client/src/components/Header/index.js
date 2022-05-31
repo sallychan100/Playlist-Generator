@@ -36,13 +36,13 @@ function Header() {
   // }
 
   return (
-    <header classname="flex">
+    <header>
+      <div className='flex'>
+      <img src={logo} alt="Logo" className='logo'/>
+      <h2> Your Personal Playlist Assistant</h2>
       <Link className="top-btn" to='/signup'> Sign up / Sign In </Link>
       
-      <Link to="/">
-      <img src={logo} alt="Logo" className='logo'/>
-      </Link>
-      
+      </div>
 
       {/* <nav>{showBtn()}</nav> */}
     </header>

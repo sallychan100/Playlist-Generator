@@ -1,11 +1,12 @@
 import React,{ useState }  from 'react'
+import './SearchBar.css'
 
 export default function SearchBar() {
 
 const[inputState, setInputState] = useState()
 function handleSearchClick(event){
     event.preventDefault()
-    console.log(inputState)
+    // We do fetching here
 }
 
 const handleChange = (event) => {
@@ -14,11 +15,15 @@ const handleChange = (event) => {
 }
 
   return (
-    <form>
-        <label htmlFor="search"  >Type a keyboard:</label>
-        <input placeholder= "What do you want to listen to?" onChange={handleChange}/> 
+   
+    <form> 
+        <div class="mb-3">
+        <label htmlFor="search"  className='form-label'>Enter a genre, artist or activity:</label> 
+        <input placeholder= "What do you want to listen to?" onChange={handleChange}  className="form-control"/> 
+        </div>  
         <button onClick={handleSearchClick}> Search </button>
     </form>
+
   )
 }
 

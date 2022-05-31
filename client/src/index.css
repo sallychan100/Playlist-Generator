@@ -2,8 +2,8 @@ html,
 body {
   min-height: 100%;
   margin: 0 20px;
-  background: #35007a;
+  background: #350179;
   color: white;
-  font-family: Century Gothic, Georgia;
+  font-family: Century Gothic, Georgia, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 30px;
 }

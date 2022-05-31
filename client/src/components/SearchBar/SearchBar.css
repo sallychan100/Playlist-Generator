@@ -1,0 +1,24 @@
+*{
+    font-family: Century Gothic;
+}
+
+label{
+    display: block;
+}
+input {
+    display: block;
+    padding: 20px;
+    margin: 15px 5px;
+    width: 30vw;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255,0.3);
+    color: #FCA311;
+    font-weight: bolder;
+    /* font-family: Century Gothic; */
+}
+
+button{
+    padding: 10px;
+    font-size: 20px;
+}
