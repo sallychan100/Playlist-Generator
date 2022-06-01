@@ -1,6 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Playlist } = require("../models");
 const { signToken } = require("../utils/auth");
+
 const clientId = "d832a28cf8dc48a39964ead771a95c73";
 require("dotenv").config();
 
