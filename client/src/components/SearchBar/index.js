@@ -14,6 +14,8 @@ export default function SearchBar() {
     // We do fetching here
   }
 
+  console.log(data);
+
   const handleChange = event => {
     const { value } = event.target;
     setInputState(value);
