@@ -1,5 +1,5 @@
 *{
-    font-family: Century Gothic;
+    font-family: 'Century Gothic', 'Inconsolata', monospace;
 }
 
 label{
@@ -13,7 +13,7 @@ input {
     font-size: 15px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255,0.3);
-    color: #FCA311;
+    color: #e1f5f4;
     font-weight: bolder;
     width: 70%;
 }
