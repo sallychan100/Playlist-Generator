@@ -47,6 +47,7 @@ const resolvers = {
       });
 
       const playlist = await spotifyApi.getPlaylist(results.body.playlists.items[0].id);
+      
       const tracks = playlist.body.tracks.items.map(el => {
         return { ...el.track, image: el.track.album.images[0].url };
       });
