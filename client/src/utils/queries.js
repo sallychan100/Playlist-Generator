@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const QUERY_THOUGHTS = gql`
   query playlists($username: String) {
@@ -14,6 +14,20 @@ export const QUERY_THOUGHTS = gql`
         username
         reactionBody
       }
+    }
+  }
+`;
+
+export const QUERY_SEARCHPLAYLISTS = gql`
+  query search($searchTerm: String!) {
+    search(searchTerm: $searchTerm) {
+      duration_ms
+      href
+      id
+      name
+      popularity
+      preview_url
+      image
     }
   }
 `;

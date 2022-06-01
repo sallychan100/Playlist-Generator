@@ -1,38 +1,29 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Playlist } = require("../models");
-const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Playlist } = require('../models');
+const { signToken } = require('../utils/auth');
 
-const clientId = "d832a28cf8dc48a39964ead771a95c73";
-require("dotenv").config();
+const clientId = 'd832a28cf8dc48a39964ead771a95c73';
+require('dotenv').config();
 
 const clientSecret = process.env.CLIENT_SECRET;
-const SpotifyWebApi = require("spotify-web-api-node");
+const SpotifyWebApi = require('spotify-web-api-node');
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select("-__v -password")
-          .populate("playlists")
-          .populate("songs");
+        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate('playlists').populate('songs');
 
         return userData;
       }
 
-      throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError('Not logged in');
     },
     users: async () => {
-      return User.find()
-        .select("-__v -password")
-        .populate("playlists")
-        .populate("songs");
+      return User.find().select('-__v -password').populate('playlists').populate('songs');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username })
-        .select("-__v -password")
-        .populate("songs")
-        .populate("playlists");
+      return User.findOne({ username }).select('-__v -password').populate('songs').populate('playlists');
     },
     playlists: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -49,21 +40,17 @@ const resolvers = {
       });
 
       const data = await spotifyApi.clientCredentialsGrant();
-      spotifyApi.setAccessToken(data.body["access_token"]);
+      spotifyApi.setAccessToken(data.body['access_token']);
 
       const results = await spotifyApi.searchPlaylists(searchTerm, {
         limit: 2,
       });
 
-      const playlist = await spotifyApi.getPlaylist(
-        results.body.playlists.items[0].id
-      );
-
-      const tracks = playlist.body.tracks.items.map((el) => {
+      const playlist = await spotifyApi.getPlaylist(results.body.playlists.items[0].id);
+      const tracks = playlist.body.tracks.items.map(el => {
         return { ...el.track, image: el.track.album.images[0].url };
       });
 
-      console.log(tracks);
       return tracks;
     },
   },
@@ -79,13 +66,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const token = signToken(user);
@@ -98,16 +85,12 @@ const resolvers = {
           username: context.user.username,
         });
 
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { playlists: playlist._id } },
-          { new: true }
-        );
+        await User.findByIdAndUpdate({ _id: context.user._id }, { $push: { playlists: playlist._id } }, { new: true });
 
         return playlist;
       }
 
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
     addReaction: async (parent, { playlistId, reactionBody }, context) => {
       if (context.user) {
@@ -124,20 +107,16 @@ const resolvers = {
         return updatedPlaylist;
       }
 
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
     addSong: async (parent, { songId }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { songs: songId } },
-          { new: true }
-        ).populate("songs");
+        const updatedUser = await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { songs: songId } }, { new: true }).populate('songs');
 
         return updatedUser;
       }
 
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
