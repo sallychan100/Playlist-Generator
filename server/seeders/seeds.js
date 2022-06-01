@@ -3,25 +3,26 @@ const userSeeds = require("./userSeed.json");
 const playlistSeeds = require("./playlistSeed.json");
 const db = require("../config/connection");
 const { Playlist, User } = require("../models");
-
+const mongoose = require("mongoose")
 db.once("open", async () => {
   try {
     await Playlist.deleteMany({});
     await User.deleteMany({});
 
-    await User.create(userSeeds);
+    const playlists = await Playlist.create(playlistSeeds);
 
-    for (let i = 0; i < playlistSeeds.length; i++) {
-      const { _id, playlistAuthor } = await Playlist.create(playlistSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: playlistAuthor },
-        {
-          $addToSet: {
-            playlists: _id,
-          },
-        }
-      );
+
+
+    const userMap = userSeeds.map(user=>{
+      return{...user, playlists:[mongoose.Types.ObjectId(playlists[0]._id)]}
+    })
+
+    for (const user of userMap) {
+      const users = await User.create(user);
+      console.log(users)
+      
     }
+  
   } catch (err) {
     console.error(err);
     process.exit(1);

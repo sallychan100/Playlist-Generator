@@ -26,12 +26,6 @@ const userSchema = new Schema(
         ref: "Playlist",
       },
     ],
-    songs: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
   },
   {
     toJSON: {

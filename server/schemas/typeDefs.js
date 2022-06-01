@@ -31,12 +31,23 @@ const typeDefs = gql`
     user: User
   }
 
+  type Track {
+    duration_ms: Int
+    href: String
+    id: String
+    name: String
+    popularity: Int
+    preview_url: String
+    image: String
+  }
+
   type Query {
     me: User
     users: [User]
     user(username: String!): User
     playlists(username: String): [Playlist]
     playlist(_id: ID!): Playlist
+    search(searchTerm: String): [Track]
   }
 
   type Mutation {

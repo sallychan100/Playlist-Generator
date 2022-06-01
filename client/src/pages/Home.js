@@ -2,6 +2,7 @@ import React from "react";
 import PlaylistList from "../components/PlaylistList";
 import PlaylistForm from "../components/PlaylistForm";
 import FriendList from "../components/FriendList";
+import SearchBar from "../components/SearchBar"
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -16,6 +17,7 @@ const Home = () => {
 
   return (
     <main>
+      <SearchBar />
       <div className="flex-row justify-space-between">
         {loggedIn && (
           <div className="col-12 mb-3">
@@ -42,6 +44,7 @@ const Home = () => {
           </div>
         ) : null}
       </div>
+
     </main>
   );
 };

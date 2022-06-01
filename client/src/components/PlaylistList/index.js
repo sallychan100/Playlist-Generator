@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const PlaylistList = ({ playlists, title }) => {
   if (!playlists.length) {
-    return <h3>No Playlists Yet</h3>;
+    return <h3 className="mt-5 mb-3 mx-5">   No Playlists Yet</h3>;
   }
 
   return (
