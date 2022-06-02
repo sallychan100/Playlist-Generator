@@ -5,6 +5,7 @@
 label{
     display: block;
 }
+
 input {
     display: block;
     padding: 20px;
@@ -24,4 +25,8 @@ button{
     border-radius: 20px;
     width: 70%;
     margin-left: 50px;
+}
+
+.results {
+    font-size: 25px;
 }
