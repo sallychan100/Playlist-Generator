@@ -19,7 +19,6 @@ export default function SearchBar() {
   }
 
   console.log(data);
-  let playlist1 = [];
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -27,16 +26,17 @@ export default function SearchBar() {
   };
 
   function handleSongChange(song) {
-    const inArray = songs.findIndex((song) => song.id === song.id);
+    const inArray = songs.findIndex((track) => track === song.id);
+    console.log();
     if (inArray > -1) {
-      //then remove it
+      songs.splice(inArray, 1);
       console.log(song.id + " was removed from playlist");
+      console.log(songs);
     } else {
-      setSongs([...songs, song]);
-      playlist1.push(song.id);
+      // setSongs([...songs, song]);
+      songs.push(song.id);
       console.log(song.name + " was added to playlist");
-      console.log(playlist1);
-      return;
+      console.log(songs);
     }
   }
 
