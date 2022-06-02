@@ -29,3 +29,36 @@ button{
 .results {
     font-size: 25px;
 }
+
+.saveButton {
+    z-index: 9999;
+    position: fixed; bottom: 0; right: 0;
+    width: 25%;
+}
+
+.bar {
+    background-color: gray;
+    height: 25px;
+    width: 100%;
+    border-radius: 15px;
+    margin: 15px;
+    position: relative;
+  }
+  
+  .bar-inner {
+    background-color: green;
+    width: 30%;
+    height: 100%;
+    border-radius: 15px;
+  }
+
+  input[type="checkbox"] {
+      width: 50px;
+      transform: scale(2);
+  }
+
+  .checkrow {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }

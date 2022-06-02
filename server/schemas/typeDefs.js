@@ -39,6 +39,7 @@ const typeDefs = gql`
     popularity: Int
     preview_url: String
     image: String
+    artist: [String]
   }
 
   type Query {

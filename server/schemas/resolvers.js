@@ -60,7 +60,12 @@ const resolvers = {
       );
 
       const tracks = playlist.body.tracks.items.map((el) => {
-        return { ...el.track, image: el.track.album.images[0].url };
+        const artist = el.track.artists.map((artist) => artist.name);
+        return {
+          ...el.track,
+          image: el.track.album.images[0].url,
+          artist: artist,
+        };
       });
 
       return tracks;
