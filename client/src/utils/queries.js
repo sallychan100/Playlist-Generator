@@ -18,6 +18,20 @@ export const QUERY_THOUGHTS = gql`
   }
 `;
 
+export const QUERY_SEARCHPLAYLISTS = gql`
+  query search($searchTerm: String!) {
+    search(searchTerm: $searchTerm) {
+      duration_ms
+      href
+      id
+      name
+      popularity
+      preview_url
+      image
+    }
+  }
+`;
+
 export const QUERY_THOUGHT = gql`
   query playlist($id: ID!) {
     playlist(_id: $id) {
