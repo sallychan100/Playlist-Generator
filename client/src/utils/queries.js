@@ -28,6 +28,7 @@ export const QUERY_SEARCHPLAYLISTS = gql`
       popularity
       preview_url
       image
+      artist
     }
   }
 `;

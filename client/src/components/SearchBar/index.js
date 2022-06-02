@@ -58,22 +58,6 @@ export default function SearchBar() {
         />
       </form>
 
-      {data?.search ? (
-        data.search.map((el, index) => {
-          return (
-            <div key={index}>
-              <h2>{el.name}</h2>
-              <h3>{el.popularity}</h3>
-              <img src={el.image} style={{ height: "180px" }} />
-              {el.preview_url && <iframe src={el.preview_url}></iframe>}
-              <input type="checkbox" onChange={() => handleSongChange(el)} />
-              <button onClick={() => savePlaylist()}>Save Playlist</button>
-            </div>
-          );
-        })
-      ) : (
-        <></>
-      )}
       <button
         onClick={handleSearchClick}
         className="btn btn-outline-light d-block mb-4 w-100"
@@ -81,6 +65,34 @@ export default function SearchBar() {
         {" "}
         Search{" "}
       </button>
+
+      {data?.search ? (
+        <div>
+          <button className="saveButton" onClick={() => savePlaylist()}>
+            Save to Playlist
+          </button>
+          {data.search.map((el, index) => {
+            return (
+              <div key={index}>
+                <h2>{el.name}</h2>
+                <h2>{el.artist.join(", ")}</h2>
+                <h3>{el.popularity}</h3>
+                <img src={el.image} style={{ height: "180px" }} />
+                {el.preview_url && (
+                  <audio
+                    controls="controls"
+                    src={el.preview_url}
+                    autostart="0"
+                  ></audio>
+                )}
+                <input type="checkbox" onChange={() => handleSongChange(el)} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
