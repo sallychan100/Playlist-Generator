@@ -74,9 +74,18 @@ export default function SearchBar() {
           {data.search.map((el, index) => {
             return (
               <div key={index}>
-                <h2>{el.name}</h2>
-                <h2>{el.artist.join(", ")}</h2>
-                <h3>{el.popularity}</h3>
+                <div className="checkrow">
+                  <input
+                    className="select-box"
+                    type="checkbox"
+                    onChange={() => handleSongChange(el)}
+                  />
+                  <div>
+                    {" "}
+                    <h2>{el.name}</h2>
+                    <h2>{el.artist.join(", ")}</h2>
+                  </div>
+                </div>
                 <img src={el.image} style={{ height: "180px" }} />
                 {el.preview_url && (
                   <audio
@@ -85,7 +94,15 @@ export default function SearchBar() {
                     autostart="0"
                   ></audio>
                 )}
-                <input type="checkbox" onChange={() => handleSongChange(el)} />
+                <div className="bar">
+                  <p style={{ position: "absolute", fontSize: "18px" }}>
+                    Popularity
+                  </p>
+                  <div
+                    className="bar-inner"
+                    style={{ width: el.popularity + "%" }}
+                  ></div>
+                </div>
               </div>
             );
           })}
