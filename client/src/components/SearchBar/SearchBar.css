@@ -50,7 +50,7 @@ button{
   }
   
   .bar-inner {
-    background-color: rgb(4, 86, 4);
+    background-color: green;
     width: 30%;
     height: 100%;
     border-radius: 15px;
