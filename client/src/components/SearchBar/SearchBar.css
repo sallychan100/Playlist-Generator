@@ -5,6 +5,7 @@
 label{
     display: block;
 }
+
 input {
     display: block;
     padding: 20px;
@@ -15,7 +16,6 @@ input {
     background-color: rgb(255, 255, 255,0.3);
     color: #e1f5f4;
     font-weight: bolder;
-    width: 70%;
 }
 
 button{
@@ -23,5 +23,8 @@ button{
     font-size: 15px;
     border-radius: 20px;
     width: 70%;
-    margin-left: 50px;
+}
+
+.results {
+    font-size: 25px;
 }

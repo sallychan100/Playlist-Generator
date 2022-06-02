@@ -1,10 +1,10 @@
 :root {
   --primary: #497573;
-  --secondary: rgb(205, 205, 205,0.2);
+  --secondary: rgba(75, 76, 76, 0.2);
   --tertiary: #b2c2c1;
   --quatrinary: #cadbda;
   --light: #e1f5f4;
-  --dark: #6c7575;
+  --dark: #6e6e6e;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -99,8 +99,9 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--secondary);
   background-color: var(--dark);
+  font-weight: bolder;
+  color: white;
 }
 
 .page-title {
@@ -126,7 +127,7 @@ nav a:hover {
 
 .btn:hover,
 .pill:hover {
-  color: var(--secondary);
+  color: white;
   background-color: var(--dark);
 }
 
