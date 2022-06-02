@@ -58,6 +58,7 @@ export default function SearchBar() {
         />
       </form>
 
+      {/* search button */}
       <button
         onClick={handleSearchClick}
         className="btn d-block mb-4 w-100"
@@ -71,31 +72,42 @@ export default function SearchBar() {
           <button className="saveButton" onClick={() => savePlaylist()}>
             Save to Playlist
           </button>
+
           {data.search.map((el, index) => {
             return (
-              <div key={index}>
-                <div className="checkrow">
+              <div key={index} style={{background:"rgba(245,245,245,0.1)", padding:"5%"}}>
+                
+                {/* First row  */}
+                <div className="displayrow">
                   <input
-                    className="select-box"
+                    className="select-box mr-4"
                     type="checkbox"
                     onChange={() => handleSongChange(el)}
                   />
-                  <div>
-                    {" "}
-                    <h2>{el.name}</h2>
-                    <h2>{el.artist.join(", ")}</h2>
                   </div>
-                </div>
-                <img src={el.image} style={{ height: "180px" }} />
-                {el.preview_url && (
-                  <audio
-                    controls="controls"
-                    src={el.preview_url}
-                    autostart="0"
-                  ></audio>
-                )}
+
+                    {" "}
+                    <h3 className="mb-3">{el.name}</h3>
+                    <h4 className="mb-4">{el.artist.join(", ")}</h4>
+                
+               
+                  <img src={el.image} className="musicimg"/>
+
+                  {/* audio preview  */}
+                  <div className="audio">
+                  {el.preview_url && (
+                    <audio
+                      controls="controls"
+                      src={el.preview_url}
+                      autostart="0"
+                      style={{margin:"5% 0"}}
+                    ></audio>
+                  )}
+                  </div>
+
+                {/* popularity bar  */}
                 <div className="bar">
-                  <p style={{ position: "absolute", fontSize: "18px" }}>
+                  <p style={{ position: "absolute", fontSize: "18px", padding:"0 10%", fontWeight:"bolder" }}>
                     Popularity
                   </p>
                   <div

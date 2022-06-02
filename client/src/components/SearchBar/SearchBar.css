@@ -1,5 +1,7 @@
 *{
     font-family: 'Century Gothic', 'Inconsolata', monospace;
+    /* background-image: url(./assets/bg2.jpg); */
+    /* background: black; */
 }
 
 label{
@@ -20,9 +22,9 @@ input {
 
 button{
     padding: 15px;
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 20px;
-    width: 70%;
+    width: 20%;
     font-weight: bolder;
 }
 
@@ -33,13 +35,15 @@ button{
 .saveButton {
     z-index: 9999;
     position: fixed; bottom: 0; right: 0;
-    width: 25%;
+    width: 20%;
+    font-size: 20px;
+    font-weight: bolder;
 }
 
 .bar {
     background-color: gray;
     height: 25px;
-    width: 100%;
+    width: 40%;
     border-radius: 15px;
     margin: 15px;
     position: relative;
@@ -57,8 +61,21 @@ button{
       transform: scale(2);
   }
 
-  .checkrow {
+  .displayrow {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: space-evenly;
   }
+
+  .audio{
+      width:300px;
+  }
+
+  .musicimg{
+      margin-left: 50%;
+      border-radius: 10px;
+      height: 180px;
+      width: auto;
+  }
+ 
+  
