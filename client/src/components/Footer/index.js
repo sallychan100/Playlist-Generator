@@ -7,7 +7,8 @@ const Footer = () => {
     p-4"
     >
       <div className="container">
-        Created by The Power of Friendship &copy;{new Date().getFullYear()}
+        Created by Breaking Bread and The Power of Friendship &copy;
+        {new Date().getFullYear()}
       </div>
     </footer>
   );
