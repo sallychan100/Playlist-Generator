@@ -19,7 +19,6 @@ export default function SearchBar() {
   }
 
   console.log(data);
-  let playlist1 = [];
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -27,16 +26,17 @@ export default function SearchBar() {
   };
 
   function handleSongChange(song) {
-    const inArray = songs.findIndex((song) => song.id === song.id);
+    const inArray = songs.findIndex((track) => track === song.id);
+    console.log();
     if (inArray > -1) {
-      //then remove it
+      songs.splice(inArray, 1);
       console.log(song.id + " was removed from playlist");
+      console.log(songs);
     } else {
-      setSongs([...songs, song]);
-      playlist1.push(song.id);
+      // setSongs([...songs, song]);
+      songs.push(song.id);
       console.log(song.name + " was added to playlist");
-      console.log(playlist1);
-      return;
+      console.log(songs);
     }
   }
 
@@ -58,22 +58,6 @@ export default function SearchBar() {
         />
       </form>
 
-      {data?.search ? (
-        data.search.map((el, index) => {
-          return (
-            <div key={index}>
-              <h2>{el.name}</h2>
-              <h3>{el.popularity}</h3>
-              <img src={el.image} style={{ height: "180px" }} />
-              {el.preview_url && <iframe src={el.preview_url}></iframe>}
-              <input type="checkbox" onChange={() => handleSongChange(el)} />
-              <button onClick={() => savePlaylist()}>Save Playlist</button>
-            </div>
-          );
-        })
-      ) : (
-        <></>
-      )}
       <button
         onClick={handleSearchClick}
         className="btn d-block mb-4 w-100"
@@ -81,6 +65,34 @@ export default function SearchBar() {
         {" "}
         Search{" "}
       </button>
+
+      {data?.search ? (
+        <div>
+          <button className="saveButton" onClick={() => savePlaylist()}>
+            Save to Playlist
+          </button>
+          {data.search.map((el, index) => {
+            return (
+              <div key={index}>
+                <h2>{el.name}</h2>
+                <h2>{el.artist.join(", ")}</h2>
+                <h3>{el.popularity}</h3>
+                <img src={el.image} style={{ height: "180px" }} />
+                {el.preview_url && (
+                  <audio
+                    controls="controls"
+                    src={el.preview_url}
+                    autostart="0"
+                  ></audio>
+                )}
+                <input type="checkbox" onChange={() => handleSongChange(el)} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
