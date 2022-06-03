@@ -23,6 +23,7 @@ export default function SearchBar() {
   const handleChange = (event) => {
     const { value } = event.target;
     setInputState(value);
+    console.log("Hey you made it to the handleChange function!")
   };
 
   function handleSongChange(song) {
@@ -30,12 +31,12 @@ export default function SearchBar() {
     console.log();
     if (inArray > -1) {
       songs.splice(inArray, 1);
-      console.log(song.id + " was removed from playlist");
+      console.log(song.id + " was removed from playlist. WOOT!");
       console.log(songs);
     } else {
       // setSongs([...songs, song]);
       songs.push(song.id);
-      console.log(song.name + " was added to playlist");
+      console.log(song.name + " was added to playlist. YAY!");
       console.log(songs);
     }
   }

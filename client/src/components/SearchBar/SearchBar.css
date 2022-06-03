@@ -15,8 +15,8 @@ input {
     width: 30vw;
     font-size: 15px;
     border-radius: 20px;
-    background-color: rgb(255, 255, 255,0.3);
-    color: #e1f5f4;
+    background-color: rgba(23, 16, 16, 0.3);
+    color: #6b6e6e;
     font-weight: bolder;
 }
 
@@ -43,7 +43,7 @@ button{
 .bar {
     background-color: gray;
     height: 25px;
-    width: 40%;
+    width: 75%;
     border-radius: 15px;
     margin: 15px;
     position: relative;
@@ -72,9 +72,9 @@ button{
   }
 
   .musicimg{
-      margin-left: 50%;
+      /* margin-left: 50%; */
       border-radius: 10px;
-      height: 180px;
+      height: 275px;
       width: auto;
   }
  
