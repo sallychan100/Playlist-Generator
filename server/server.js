@@ -1,7 +1,7 @@
 const express = require("express");
 // import ApolloServer
 const { ApolloServer } = require("apollo-server-express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const path = require("path");
 
 // import our typeDefs and resolvers
@@ -24,23 +24,27 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-const connectToDB = async() => {
-  try{
-    await mongoose.connect(
-      process.env.MONGODB_URI,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-    );
-    console.log('DB Connected')
-  }catch(err){
-    console.log('error connecting')
-  }
-}
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/'));
+})
+
+// const connectToDB = async() => {
+//   try{
+//     await mongoose.connect(
+//       process.env.MONGODB_URI,
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     }
+//     );
+//     console.log('DB Connected')
+//   }catch(err){
+//     console.log('error connecting')
+//   }
+// }
 //  connectToDB(); 
 // Use this to log mongo queries being executed!
-mongoose.set("debug", true);
+// mongoose.set("debug", true);
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
