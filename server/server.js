@@ -2,11 +2,7 @@ const express = require("express");
 // import ApolloServer
 const { ApolloServer } = require("apollo-server-express");
 const mongoose = require("mongoose");
-<<<<<<< HEAD
-const path = require('path')
-=======
 const path = require("path");
->>>>>>> 1be6042fa82381f398d07ddd8a7fc95f8639bc98
 
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
@@ -28,20 +24,20 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-// const connectToDB = async() => {
-//   try{
-//     await mongoose.connect(
-//       process.env.MONGODB_URI,
-//     {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     }
-//     );
-//     console.log('DB Connected')
-//   }catch(err){
-//     console.log('error connecting')
-//   }
-// }
+const connectToDB = async() => {
+  try{
+    await mongoose.connect(
+      process.env.MONGODB_URI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+    );
+    console.log('DB Connected')
+  }catch(err){
+    console.log('error connecting')
+  }
+}
 //  connectToDB(); 
 // Use this to log mongo queries being executed!
 mongoose.set("debug", true);

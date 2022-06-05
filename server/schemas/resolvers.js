@@ -2,8 +2,8 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Playlist } = require("../models");
 const { signToken } = require("../utils/auth");
 
-const clientId = "d832a28cf8dc48a39964ead771a95c73";
 require("dotenv").config();
+const clientId = process.env.CLIENT_ID;
 
 const clientSecret = process.env.CLIENT_SECRET;
 const SpotifyWebApi = require("spotify-web-api-node");
@@ -47,6 +47,7 @@ const resolvers = {
         clientId: clientId,
         clientSecret: clientSecret,
       });
+console.log(spotifyApi)
 
       const data = await spotifyApi.clientCredentialsGrant();
       spotifyApi.setAccessToken(data.body["access_token"]);
