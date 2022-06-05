@@ -8,6 +8,7 @@ export default function SearchBar() {
   const [getPlaylist, { loading, error, data }] = useLazyQuery(
     QUERY_SEARCHPLAYLISTS
   );
+  
 
   const [songs, setSongs] = useState([]);
 
